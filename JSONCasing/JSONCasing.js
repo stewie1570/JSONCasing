@@ -15,11 +15,7 @@
         for (var key in obj)
         {
             var properKey = properFirstChar(key) + key.substr(1, key.length - 1);
-
-            if (typeof (obj[key]) == "object")
-                newObj[properKey] = caller.call(this, obj[key]);
-            else
-                newObj[properKey] = obj[key];
+            newObj[properKey] = typeof (obj[key]) == "object" ? caller.call(this, obj[key]) : obj[key];
         }
         return newObj;
     }
