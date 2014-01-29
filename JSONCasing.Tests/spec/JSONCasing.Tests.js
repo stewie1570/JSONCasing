@@ -1,5 +1,31 @@
 ﻿describe("JSONCasing object", function ()
 {
+    it("should return a new object and have no affect on the original object", function ()
+    {
+        //Arrange
+        var orig = { prop1: "prop 1", Prop2: "prop 2", Prop3: { Dp1: "dp 1" }, prop4: { dp2: "dp2" } };
+        var expectedJSON = JSON.stringify(orig);
+
+        //Act
+        JSONCasing.toCamel(orig);
+
+        //Assert
+        expect(JSON.stringify(orig)).toBe(expectedJSON);
+    });
+
+    it("should copy proper and impropper case keys", function ()
+    {
+        //Arrange
+        var orig = { Prop1: "prop 1", prop2: { dp1: "dp 1" } };
+        var expectedJSON = JSON.stringify({ Prop1: "prop 1", Prop2: { Dp1: "dp 1" } });
+
+        //Act
+        var result = JSONCasing.toCamel(orig);
+
+        //Assert
+        expect(JSON.stringify(result)).toBe(expectedJSON);
+    });
+
     describe("Camel Case conversion", function ()
     {
         it("should support a shallow conversion", function ()
