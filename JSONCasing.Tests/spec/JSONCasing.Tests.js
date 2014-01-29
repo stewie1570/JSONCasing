@@ -13,7 +13,7 @@
         expect(JSON.stringify(orig)).toBe(expectedJSON);
     });
 
-    it("should copy proper and impropper case keys", function ()
+    it("should copy proper and improper case keys", function ()
     {
         //Arrange
         var orig = { Prop1: "prop 1", prop2: { dp1: "dp 1" } };
