@@ -8,6 +8,7 @@
 
         //Act
         JSONCasing.toCamel(orig);
+        JSONCasing.toPascal(orig);
 
         //Assert
         expect(JSON.stringify(orig)).toBe(expectedJSON);
@@ -17,13 +18,16 @@
     {
         //Arrange
         var orig = { Prop1: "prop 1", prop2: { dp1: "dp 1" } };
-        var expectedJSON = JSON.stringify({ Prop1: "prop 1", Prop2: { Dp1: "dp 1" } });
+        var expectedCamelJSON = JSON.stringify({ Prop1: "prop 1", Prop2: { Dp1: "dp 1" } });
+        var expectedPascalJSON = JSON.stringify({ prop1: "prop 1", prop2: { dp1: "dp 1" } });
 
         //Act
-        var result = JSONCasing.toCamel(orig);
+        var resultCamel = JSONCasing.toCamel(orig);
+        var resultPascal = JSONCasing.toPascal(orig);
 
         //Assert
-        expect(JSON.stringify(result)).toBe(expectedJSON);
+        expect(JSON.stringify(resultCamel)).toBe(expectedCamelJSON);
+        expect(JSON.stringify(resultPascal)).toBe(expectedPascalJSON);
     });
 
     describe("Camel Case conversion", function ()
