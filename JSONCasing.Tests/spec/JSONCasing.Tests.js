@@ -30,6 +30,38 @@
         expect(JSON.stringify(resultPascal)).toBe(expectedPascalJSON);
     });
 
+    it("should support simple JSON arrays", function ()
+    {
+        //Arrange
+        var orig = [1, 2, 3];
+        var expectedResult = JSON.stringify(orig);
+
+        //Act
+        var resultCamel = JSONCasing.toCamel(orig);
+        var resultPascal = JSONCasing.toPascal(orig);
+
+        //Assert
+        expect(JSON.stringify(resultCamel)).toBe(expectedResult);
+        expect(JSON.stringify(resultPascal)).toBe(expectedResult);
+    });
+
+    it("should support complex JSON arrays", function ()
+    {
+        //Arrange
+        var origPascal = [1, 2, [1, 2, 3], { prop1: "p1", prop2: { dp1: "dp1" } }];
+        var origCamel = [1, 2, [1, 2, 3], { Prop1: "p1", Prop2: { Dp1: "dp1" } }];
+        var expectedPascalResult = JSON.stringify(origPascal);
+        var expectedCamelResult = JSON.stringify(origCamel);
+
+        //Act
+        var resultCamel = JSONCasing.toCamel(origPascal);
+        var resultPascal = JSONCasing.toPascal(origCamel);
+
+        //Assert
+        expect(JSON.stringify(resultCamel)).toBe(expectedCamelResult);
+        expect(JSON.stringify(resultPascal)).toBe(expectedPascalResult);
+    });
+
     describe("Camel Case conversion", function ()
     {
         it("should support a shallow conversion", function ()

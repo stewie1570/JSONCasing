@@ -11,7 +11,7 @@
 
     processObj: function (obj, caller, firstChar)
     {
-        var newObj = {};
+        var newObj = Object.prototype.toString.call(obj) == "[object Array]" ? [] : {};
         for (var key in obj)
         {
             var properKey = firstChar(key.charAt(0)) + key.substr(1, key.length - 1);
