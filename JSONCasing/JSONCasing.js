@@ -1,12 +1,12 @@
 ﻿JSONCasing = {
     toCamel: function (obj)
     {
-        return this.processObj(obj, this.toCamel, function (firstChar) { return firstChar.toUpperCase(); });
+        return this.processObj(obj, this.toCamel, function (firstChar) { return firstChar.toLowerCase(); });
     },
 
     toPascal: function (obj)
     {
-        return this.processObj(obj, this.toPascal, function (firstChar) { return firstChar.toLowerCase(); });
+        return this.processObj(obj, this.toPascal, function (firstChar) { return firstChar.toUpperCase(); });
     },
 
     processObj: function (obj, caller, firstChar)

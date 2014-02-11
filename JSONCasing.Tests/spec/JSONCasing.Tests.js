@@ -7,8 +7,8 @@
         var expectedJSON = JSON.stringify(orig);
 
         //Act
-        JSONCasing.toCamel(orig);
         JSONCasing.toPascal(orig);
+        JSONCasing.toCamel(orig);
 
         //Assert
         expect(JSON.stringify(orig)).toBe(expectedJSON);
@@ -18,16 +18,16 @@
     {
         //Arrange
         var orig = { Prop1: "prop 1", prop2: { dp1: "dp 1" } };
-        var expectedCamelJSON = JSON.stringify({ Prop1: "prop 1", Prop2: { Dp1: "dp 1" } });
-        var expectedPascalJSON = JSON.stringify({ prop1: "prop 1", prop2: { dp1: "dp 1" } });
+        var expectedPascalJSON = JSON.stringify({ Prop1: "prop 1", Prop2: { Dp1: "dp 1" } });
+        var expectedCamelJSON = JSON.stringify({ prop1: "prop 1", prop2: { dp1: "dp 1" } });
 
         //Act
-        var resultCamel = JSONCasing.toCamel(orig);
         var resultPascal = JSONCasing.toPascal(orig);
+        var resultCamel = JSONCasing.toCamel(orig);
 
         //Assert
-        expect(JSON.stringify(resultCamel)).toBe(expectedCamelJSON);
         expect(JSON.stringify(resultPascal)).toBe(expectedPascalJSON);
+        expect(JSON.stringify(resultCamel)).toBe(expectedCamelJSON);
     });
 
     it("should support simple JSON arrays", function ()
@@ -37,57 +37,29 @@
         var expectedResult = JSON.stringify(orig);
 
         //Act
-        var resultCamel = JSONCasing.toCamel(orig);
         var resultPascal = JSONCasing.toPascal(orig);
+        var resultCamel = JSONCasing.toCamel(orig);
 
         //Assert
-        expect(JSON.stringify(resultCamel)).toBe(expectedResult);
         expect(JSON.stringify(resultPascal)).toBe(expectedResult);
+        expect(JSON.stringify(resultCamel)).toBe(expectedResult);
     });
 
     it("should support complex JSON arrays", function ()
     {
         //Arrange
-        var origPascal = [1, 2, [1, 2, 3], { prop1: "p1", prop2: { dp1: "dp1" } }];
-        var origCamel = [1, 2, [1, 2, 3], { Prop1: "p1", Prop2: { Dp1: "dp1" } }];
-        var expectedPascalResult = JSON.stringify(origPascal);
+        var origCamel = [1, 2, [1, 2, 3], { prop1: "p1", prop2: { dp1: "dp1" } }];
+        var origPascal = [1, 2, [1, 2, 3], { Prop1: "p1", Prop2: { Dp1: "dp1" } }];
         var expectedCamelResult = JSON.stringify(origCamel);
+        var expectedPascalResult = JSON.stringify(origPascal);
 
         //Act
-        var resultCamel = JSONCasing.toCamel(origPascal);
         var resultPascal = JSONCasing.toPascal(origCamel);
+        var resultCamel = JSONCasing.toCamel(origPascal);
 
         //Assert
-        expect(JSON.stringify(resultCamel)).toBe(expectedCamelResult);
         expect(JSON.stringify(resultPascal)).toBe(expectedPascalResult);
-    });
-
-    describe("Camel Case conversion", function ()
-    {
-        it("should support a shallow conversion", function ()
-        {
-            //Arrange
-            var pascalObj = { prop1: "prop 1", prop2: "prop 2" };
-            var camelObj = { Prop1: "prop 1", Prop2: "prop 2" };
-            actAndAssert(pascalObj, camelObj);
-        });
-
-        it("should support a deep conversion", function ()
-        {
-            //Arrange
-            var pascalObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
-            var camelObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
-            actAndAssert(pascalObj, camelObj);
-        });
-
-        function actAndAssert(pascalObj, camelObj)
-        {
-            //Act
-            var result = JSONCasing.toCamel(pascalObj);
-
-            //Assert
-            expect(JSON.stringify(result)).toBe(JSON.stringify(camelObj));
-        }
+        expect(JSON.stringify(resultCamel)).toBe(expectedCamelResult);
     });
 
     describe("Pascal Case conversion", function ()
@@ -95,26 +67,54 @@
         it("should support a shallow conversion", function ()
         {
             //Arrange
-            var pascalObj = { prop1: "prop 1", prop2: "prop 2" };
-            var camelObj = { Prop1: "prop 1", Prop2: "prop 2" };
-            actAndAssert(pascalObj, camelObj);
+            var camelObj = { prop1: "prop 1", prop2: "prop 2" };
+            var pascalObj = { Prop1: "prop 1", Prop2: "prop 2" };
+            actAndAssert(camelObj, pascalObj);
         });
 
         it("should support a deep conversion", function ()
         {
             //Arrange
-            var pascalObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
-            var camelObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
-            actAndAssert(pascalObj, camelObj);
+            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
+            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
+            actAndAssert(camelObj, pascalObj);
         });
 
-        function actAndAssert(pascalObj, camelObj)
+        function actAndAssert(camelObj, pascalObj)
         {
             //Act
             var result = JSONCasing.toPascal(camelObj);
 
             //Assert
             expect(JSON.stringify(result)).toBe(JSON.stringify(pascalObj));
+        }
+    });
+
+    describe("Camel Case conversion", function ()
+    {
+        it("should support a shallow conversion", function ()
+        {
+            //Arrange
+            var camelObj = { prop1: "prop 1", prop2: "prop 2" };
+            var pascalObj = { Prop1: "prop 1", Prop2: "prop 2" };
+            actAndAssert(camelObj, pascalObj);
+        });
+
+        it("should support a deep conversion", function ()
+        {
+            //Arrange
+            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
+            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
+            actAndAssert(camelObj, pascalObj);
+        });
+
+        function actAndAssert(camelObj, pascalObj)
+        {
+            //Act
+            var result = JSONCasing.toCamel(pascalObj);
+
+            //Assert
+            expect(JSON.stringify(result)).toBe(JSON.stringify(camelObj));
         }
     });
 });
