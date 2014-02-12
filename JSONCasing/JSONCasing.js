@@ -1,22 +1,62 @@
 ﻿JSONCasing = {
-    toCamel: function (obj)
+    toCamel: function (jsonObj)
     {
-        return this.processObj(obj, this.toCamel, function (firstChar) { return firstChar.toLowerCase(); });
+        return this.helpers.processJsonObj.call(this, {
+            jsonObj: jsonObj,
+            keyModifier: this.toCamel,
+            properFirstCharFunc: function (firstChar) { return firstChar.toLowerCase(); }
+        });
     },
 
-    toPascal: function (obj)
+    toPascal: function (jsonObj)
     {
-        return this.processObj(obj, this.toPascal, function (firstChar) { return firstChar.toUpperCase(); });
+        return this.helpers.processJsonObj.call(this, {
+            jsonObj: jsonObj,
+            keyModifier: this.toPascal,
+            properFirstCharFunc: function (firstChar) { return firstChar.toUpperCase(); }
+        });
     },
 
-    processObj: function (obj, caller, firstChar)
-    {
-        var newObj = Object.prototype.toString.call(obj) == "[object Array]" ? [] : {};
-        for (var key in obj)
+    helpers: {
+        processJsonObj: function (jsonCasingCommand)
         {
-            var properKey = firstChar(key.charAt(0)) + key.substr(1, key.length - 1);
-            newObj[properKey] = typeof (obj[key]) == "object" ? caller.call(this, obj[key]) : obj[key];
+            var jsonObj = jsonCasingCommand.jsonObj,
+                keyModifier = jsonCasingCommand.keyModifier,
+                properFirstCharFunc = jsonCasingCommand.properFirstCharFunc,
+                replacementObj = this.helpers.isArray(jsonObj) ? [] : {};
+
+            if (this.helpers.isPrimitive(jsonObj))
+                return jsonObj;
+
+            for (var key in jsonObj)
+            {
+                var properKey = this.helpers.properKeyFrom(key, properFirstCharFunc);
+                replacementObj[properKey] = this
+                    .helpers
+                    .recursivelyKeyModifiedJsonObjectFrom.call(this, jsonObj[key], keyModifier);
+            }
+
+            return replacementObj;
+        },
+
+        isArray: function(obj)
+        {
+            return Object.prototype.toString.call(obj) == "[object Array]";
+        },
+
+        isPrimitive: function (obj)
+        {
+            return typeof(obj) != "object";
+        },
+
+        recursivelyKeyModifiedJsonObjectFrom: function (jsonObj, keyModifier)
+        {
+            return typeof (jsonObj) == "object" ? keyModifier.call(this, jsonObj) : jsonObj;
+        },
+
+        properKeyFrom: function (key, properFirstCharFunc)
+        {
+            return properFirstCharFunc(key.charAt(0)) + key.substr(1, key.length - 1);
         }
-        return newObj;
     }
 };

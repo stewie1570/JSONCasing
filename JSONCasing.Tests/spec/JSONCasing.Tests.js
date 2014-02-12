@@ -1,5 +1,42 @@
 ﻿describe("JSONCasing object", function ()
 {
+    describe("passing a primitive", function ()
+    {
+        it("should not throw exception", function ()
+        {
+            //Arrange
+            var string = "a string (a primitive)";
+            var number = 2;
+
+            //Act
+            var exception = null;
+            try
+            {
+                JSONCasing.toPascal(string);
+                JSONCasing.toPascal(number);
+                JSONCasing.toCamel(string);
+                JSONCasing.toCamel(number);
+            } catch (ex) { exception = ex;}
+            
+            //Assert
+            expect(exception).toBeNull();
+        });
+
+        it("should return the original", function ()
+        {
+            //Arrange
+            var string = "a string (a primitive)";
+            var number = 2;
+
+            //Act
+            //Assert
+            expect(JSONCasing.toPascal(string)).toBe(string);
+            expect(JSONCasing.toPascal(number)).toBe(number);
+            expect(JSONCasing.toCamel(string)).toBe(string);
+            expect(JSONCasing.toCamel(number)).toBe(number);
+        });
+    });
+
     it("should return a new object and have no affect on the original object", function ()
     {
         //Arrange
