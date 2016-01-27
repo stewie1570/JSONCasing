@@ -1,62 +1,55 @@
-﻿export var JSONCasing = {
-    toCamel: function (jsonObj)
-    {
-        return this.helpers.processJsonObj.call(this, {
+﻿class Casing {
+    constructor() { }
+
+    toCamel(jsonObj) {
+        return this.processJsonObj.call(this, {
             jsonObj: jsonObj,
             keyModifier: this.toCamel,
-            properFirstCharFunc: function (firstChar) { return firstChar.toLowerCase(); }
+            properFirstCharFunc: firstChar => firstChar.toLowerCase()
         });
-    },
+    }
 
-    toPascal: function (jsonObj)
-    {
-        return this.helpers.processJsonObj.call(this, {
+    toPascal(jsonObj) {
+        return this.processJsonObj.call(this, {
             jsonObj: jsonObj,
             keyModifier: this.toPascal,
-            properFirstCharFunc: function (firstChar) { return firstChar.toUpperCase(); }
+            properFirstCharFunc: firstChar => firstChar.toUpperCase()
         });
-    },
+    }
 
-    helpers: {
-        processJsonObj: function (jsonCasingCommand)
-        {
-            var jsonObj = jsonCasingCommand.jsonObj,
-                keyModifier = jsonCasingCommand.keyModifier,
-                properFirstCharFunc = jsonCasingCommand.properFirstCharFunc,
-                replacementObj = this.helpers.isArray(jsonObj) ? [] : {};
+    processJsonObj(jsonCasingCommand) {
+        var jsonObj = jsonCasingCommand.jsonObj,
+            keyModifier = jsonCasingCommand.keyModifier,
+            properFirstCharFunc = jsonCasingCommand.properFirstCharFunc,
+            replacementObj = this.isArray(jsonObj) ? [] : {};
 
-            if (this.helpers.isPrimitive(jsonObj))
-                return jsonObj;
+        if (this.isPrimitive(jsonObj))
+            return jsonObj;
 
-            for (var key in jsonObj)
-            {
-                var properKey = this.helpers.properKeyFrom(key, properFirstCharFunc);
-                replacementObj[properKey] = this
-                    .helpers
-                    .recursivelyKeyModifiedJsonObjectFrom.call(this, jsonObj[key], keyModifier);
-            }
-
-            return replacementObj;
-        },
-
-        isArray: function(obj)
-        {
-            return Object.prototype.toString.call(obj) == "[object Array]";
-        },
-
-        isPrimitive: function (obj)
-        {
-            return typeof(obj) != "object";
-        },
-
-        recursivelyKeyModifiedJsonObjectFrom: function (jsonObj, keyModifier)
-        {
-            return typeof (jsonObj) == "object" ? keyModifier.call(this, jsonObj) : jsonObj;
-        },
-
-        properKeyFrom: function (key, properFirstCharFunc)
-        {
-            return properFirstCharFunc(key.charAt(0)) + key.substr(1, key.length - 1);
+        for (var key in jsonObj) {
+            var properKey = this.properKeyFrom(key, properFirstCharFunc);
+            replacementObj[properKey] = this
+                .recursivelyKeyModifiedJsonObjectFrom.call(this, jsonObj[key], keyModifier);
         }
+
+        return replacementObj;
+    }
+
+    isArray(obj) {
+        return Object.prototype.toString.call(obj) == "[object Array]";
+    }
+
+    isPrimitive(obj) {
+        return typeof (obj) != "object";
+    }
+
+    recursivelyKeyModifiedJsonObjectFrom(jsonObj, keyModifier) {
+        return typeof (jsonObj) == "object" ? keyModifier.call(this, jsonObj) : jsonObj;
+    }
+
+    properKeyFrom(key, properFirstCharFunc) {
+        return properFirstCharFunc(key.charAt(0)) + key.substr(1, key.length - 1);
     }
 };
+
+export var JSONCasing = new Casing();

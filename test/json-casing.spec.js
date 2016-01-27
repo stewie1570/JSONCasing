@@ -1,10 +1,10 @@
 ﻿import { JSONCasing } from '../src/json-casing';
 
-describe("JSONCasing", function ()
+describe("JSONCasing", () =>
 {
-    describe("Primitives", function ()
+    describe("Primitives", () =>
     {
-        it("should not throw exception", function ()
+        it("should not throw exception", () =>
         {
             //Arrange
             var string = "a string (a primitive)";
@@ -24,7 +24,7 @@ describe("JSONCasing", function ()
             expect(exception).to.equal(null);
         });
 
-        it("should return the original", function ()
+        it("should return the original", () =>
         {
             //Arrange
             var string = "a string (a primitive)";
@@ -39,7 +39,7 @@ describe("JSONCasing", function ()
         });
     });
 
-    it("should return a new object and have no affect on the original object", function ()
+    it("should return a new object and have no affect on the original object", () =>
     {
         //Arrange
         var orig = { prop1: "prop 1", Prop2: "prop 2", Prop3: { Dp1: "dp 1" }, prop4: { dp2: "dp2" } };
@@ -53,7 +53,7 @@ describe("JSONCasing", function ()
         expect(JSON.stringify(orig)).to.equal(expectedJSON);
     });
 
-    it("should copy proper and improper case keys", function ()
+    it("should copy proper and improper case keys", () =>
     {
         //Arrange
         var orig = { Prop1: "prop 1", prop2: { dp1: "dp 1" } };
@@ -69,7 +69,7 @@ describe("JSONCasing", function ()
         expect(JSON.stringify(resultCamel)).to.equal(expectedCamelJSON);
     });
 
-    it("should support simple JSON arrays", function ()
+    it("should support simple JSON arrays", () =>
     {
         //Arrange
         var orig = [1, 2, 3];
@@ -84,7 +84,7 @@ describe("JSONCasing", function ()
         expect(JSON.stringify(resultCamel)).to.equal(expectedResult);
     });
 
-    it("should support complex JSON arrays", function ()
+    it("should support complex JSON arrays", () =>
     {
         //Arrange
         var origCamel = [1, 2, [1, 2, 3], { prop1: "p1", prop2: { dp1: "dp1" } }];
@@ -101,9 +101,9 @@ describe("JSONCasing", function ()
         expect(JSON.stringify(resultCamel)).to.equal(expectedCamelResult);
     });
 
-    describe("To Pascal", function ()
+    describe("To Pascal", () =>
     {
-        it("should support a shallow conversion", function ()
+        it("should support a shallow conversion", () =>
         {
             //Arrange
             var camelObj = { prop1: "prop 1", prop2: "prop 2" };
@@ -111,7 +111,7 @@ describe("JSONCasing", function ()
             actAndAssert(camelObj, pascalObj);
         });
 
-        it("should support a deep conversion", function ()
+        it("should support a deep conversion", () =>
         {
             //Arrange
             var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
@@ -129,9 +129,9 @@ describe("JSONCasing", function ()
         }
     });
 
-    describe("To Camel", function ()
+    describe("To Camel", () =>
     {
-        it("should support a shallow conversion", function ()
+        it("should support a shallow conversion", () =>
         {
             //Arrange
             var camelObj = { prop1: "prop 1", prop2: "prop 2" };
@@ -139,7 +139,7 @@ describe("JSONCasing", function ()
             actAndAssert(camelObj, pascalObj);
         });
 
-        it("should support a deep conversion", function ()
+        it("should support a deep conversion", () =>
         {
             //Arrange
             var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
