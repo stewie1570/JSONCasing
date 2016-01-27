@@ -1,53 +1,48 @@
 ﻿class Casing {
-    constructor() { }
-
+    
     toCamel(jsonObj) {
-        return this.processJsonObj.call(this, {
-            jsonObj: jsonObj,
+        return this._reCasedObjectFrom({
+            jsonObj,
             keyModifier: this.toCamel,
-            properFirstCharFunc: firstChar => firstChar.toLowerCase()
+            firstCharModifier: firstChar => firstChar.toLowerCase()
         });
     }
 
     toPascal(jsonObj) {
-        return this.processJsonObj.call(this, {
-            jsonObj: jsonObj,
+        return this._reCasedObjectFrom({
+            jsonObj,
             keyModifier: this.toPascal,
-            properFirstCharFunc: firstChar => firstChar.toUpperCase()
+            firstCharModifier: firstChar => firstChar.toUpperCase()
         });
     }
 
-    processJsonObj(jsonCasingCommand) {
-        var jsonObj = jsonCasingCommand.jsonObj,
-            keyModifier = jsonCasingCommand.keyModifier,
-            properFirstCharFunc = jsonCasingCommand.properFirstCharFunc,
-            replacementObj = this.isArray(jsonObj) ? [] : {};
+    _reCasedObjectFrom({jsonObj, keyModifier, firstCharModifier}) {
+        var replacementObj = this._isArray(jsonObj) ? [] : {};
 
-        if (this.isPrimitive(jsonObj))
+        if (this._isPrimitive(jsonObj))
             return jsonObj;
 
         for (var key in jsonObj) {
-            var properKey = this.properKeyFrom(key, properFirstCharFunc);
-            replacementObj[properKey] = this
-                .recursivelyKeyModifiedJsonObjectFrom.call(this, jsonObj[key], keyModifier);
+            var properKey = this._properKeyFrom(key, firstCharModifier);
+            replacementObj[properKey] = this._processedObjectFrom(jsonObj[key], keyModifier);
         }
 
         return replacementObj;
     }
 
-    isArray(obj) {
+    _isArray(obj) {
         return Object.prototype.toString.call(obj) == "[object Array]";
     }
 
-    isPrimitive(obj) {
+    _isPrimitive(obj) {
         return typeof (obj) != "object";
     }
 
-    recursivelyKeyModifiedJsonObjectFrom(jsonObj, keyModifier) {
+    _processedObjectFrom(jsonObj, keyModifier) {
         return typeof (jsonObj) == "object" ? keyModifier.call(this, jsonObj) : jsonObj;
     }
 
-    properKeyFrom(key, properFirstCharFunc) {
+    _properKeyFrom(key, properFirstCharFunc) {
         return properFirstCharFunc(key.charAt(0)) + key.substr(1, key.length - 1);
     }
 };
