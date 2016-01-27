@@ -1,4 +1,4 @@
-﻿JSONCasing = {
+﻿export var JSONCasing = {
     toCamel: function (jsonObj)
     {
         return this.helpers.processJsonObj.call(this, {
