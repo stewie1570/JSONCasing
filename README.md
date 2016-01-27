@@ -1,5 +1,6 @@
-JSONCasing
-==========
+#json-casing
+
+[![Build](https://travis-ci.org/stewie1570/JSONCasing.svg)](https://travis-ci.org/stewie1570/JSONCasing)
 
 Here are a few lines of code taken from a unit test so you can see how to use this very simple JavaScript.
 
