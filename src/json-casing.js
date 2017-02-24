@@ -19,6 +19,8 @@
     _reCasedObjectFrom({jsonObj, casingChange, firstCharModifier}) {
         var replacementObj = this._isArray(jsonObj) ? [] : {};
 
+        if (jsonObj == null)
+            return jsonObj;
         if (this._isPrimitive(jsonObj))
             return jsonObj;
 

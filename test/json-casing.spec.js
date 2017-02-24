@@ -19,7 +19,7 @@ describe("JSONCasing", () =>
                 JSONCasing.toCamel(string);
                 JSONCasing.toCamel(number);
             } catch (ex) { exception = ex;}
-            
+
             //Assert
             expect(exception).to.equal(null);
         });
@@ -29,6 +29,7 @@ describe("JSONCasing", () =>
             //Arrange
             var string = "a string (a primitive)";
             var number = 2;
+            var nullObj = null;
 
             //Act
             //Assert
@@ -36,13 +37,14 @@ describe("JSONCasing", () =>
             expect(JSONCasing.toPascal(number)).to.equal(number);
             expect(JSONCasing.toCamel(string)).to.equal(string);
             expect(JSONCasing.toCamel(number)).to.equal(number);
+            expect(JSONCasing.toCamel(nullObj)).to.equal(nullObj);
         });
     });
 
     it("should return a new object and have no affect on the original object", () =>
     {
         //Arrange
-        var orig = { prop1: "prop 1", Prop2: "prop 2", Prop3: { Dp1: "dp 1" }, prop4: { dp2: "dp2" } };
+        var orig = { prop1: "prop 1", Prop2: "prop 2", Prop3: { Dp1: "dp 1" }, prop4: { dp2: "dp2" }, prop5: null };
         var expectedJSON = JSON.stringify(orig);
 
         //Act
