@@ -1,4 +1,4 @@
-#json-casing
+# json-casing
 
 [![Build](https://travis-ci.org/stewie1570/JSONCasing.svg)](https://travis-ci.org/stewie1570/JSONCasing)
 [![npm version](https://badge.fury.io/js/json-casing.svg)](https://badge.fury.io/js/json-casing)
