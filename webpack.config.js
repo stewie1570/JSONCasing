@@ -5,15 +5,23 @@ module.exports = {
     entry: "./src/json-casing.js",
     output: {
         path: __dirname,
-        filename: "index.js",
+        filename: "./build/index.js",
         library: 'JSONCasing',
         libraryTarget: 'umd'
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: "babel-loader" }
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['env']
+                }
+            }
         ]
     },
-    watch: true,
-    devtool: 'source-map'
+    stats: {
+        colors: true
+    }
 };

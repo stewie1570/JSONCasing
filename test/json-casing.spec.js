@@ -21,7 +21,7 @@ describe("JSONCasing", () =>
             } catch (ex) { exception = ex;}
 
             //Assert
-            expect(exception).to.equal(null);
+            expect(exception).toEqual(null);
         });
 
         it("should return the original", () =>
@@ -33,11 +33,11 @@ describe("JSONCasing", () =>
 
             //Act
             //Assert
-            expect(JSONCasing.toPascal(string)).to.equal(string);
-            expect(JSONCasing.toPascal(number)).to.equal(number);
-            expect(JSONCasing.toCamel(string)).to.equal(string);
-            expect(JSONCasing.toCamel(number)).to.equal(number);
-            expect(JSONCasing.toCamel(nullObj)).to.equal(nullObj);
+            expect(JSONCasing.toPascal(string)).toEqual(string);
+            expect(JSONCasing.toPascal(number)).toEqual(number);
+            expect(JSONCasing.toCamel(string)).toEqual(string);
+            expect(JSONCasing.toCamel(number)).toEqual(number);
+            expect(JSONCasing.toCamel(nullObj)).toEqual(nullObj);
         });
     });
 
@@ -52,7 +52,7 @@ describe("JSONCasing", () =>
         JSONCasing.toCamel(orig);
 
         //Assert
-        expect(JSON.stringify(orig)).to.equal(expectedJSON);
+        expect(JSON.stringify(orig)).toEqual(expectedJSON);
     });
 
     it("should copy proper and improper case keys", () =>
@@ -67,8 +67,8 @@ describe("JSONCasing", () =>
         var resultCamel = JSONCasing.toCamel(orig);
 
         //Assert
-        expect(JSON.stringify(resultPascal)).to.equal(expectedPascalJSON);
-        expect(JSON.stringify(resultCamel)).to.equal(expectedCamelJSON);
+        expect(JSON.stringify(resultPascal)).toEqual(expectedPascalJSON);
+        expect(JSON.stringify(resultCamel)).toEqual(expectedCamelJSON);
     });
 
     it("should support simple JSON arrays", () =>
@@ -82,8 +82,8 @@ describe("JSONCasing", () =>
         var resultCamel = JSONCasing.toCamel(orig);
 
         //Assert
-        expect(JSON.stringify(resultPascal)).to.equal(expectedResult);
-        expect(JSON.stringify(resultCamel)).to.equal(expectedResult);
+        expect(JSON.stringify(resultPascal)).toEqual(expectedResult);
+        expect(JSON.stringify(resultCamel)).toEqual(expectedResult);
     });
 
     it("should support complex JSON arrays", () =>
@@ -99,8 +99,8 @@ describe("JSONCasing", () =>
         var resultCamel = JSONCasing.toCamel(origPascal);
 
         //Assert
-        expect(JSON.stringify(resultPascal)).to.equal(expectedPascalResult);
-        expect(JSON.stringify(resultCamel)).to.equal(expectedCamelResult);
+        expect(JSON.stringify(resultPascal)).toEqual(expectedPascalResult);
+        expect(JSON.stringify(resultCamel)).toEqual(expectedCamelResult);
     });
 
     describe("To Pascal", () =>
@@ -127,7 +127,7 @@ describe("JSONCasing", () =>
             var result = JSONCasing.toPascal(camelObj);
 
             //Assert
-            expect(JSON.stringify(result)).to.equal(JSON.stringify(pascalObj));
+            expect(JSON.stringify(result)).toEqual(JSON.stringify(pascalObj));
         }
     });
 
@@ -155,7 +155,7 @@ describe("JSONCasing", () =>
             var result = JSONCasing.toCamel(pascalObj);
 
             //Assert
-            expect(JSON.stringify(result)).to.equal(JSON.stringify(camelObj));
+            expect(JSON.stringify(result)).toEqual(JSON.stringify(camelObj));
         }
     });
 });
