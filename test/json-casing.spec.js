@@ -113,11 +113,12 @@ describe("JSONCasing", () =>
             actAndAssert(camelObj, pascalObj);
         });
 
-        it("should support a deep conversion", () =>
+        it("should support a deep conversion with a date", () =>
         {
             //Arrange
-            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
-            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
+            var date = new Date();
+            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2", date } };
+            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2", Date: date } };
             actAndAssert(camelObj, pascalObj);
         });
 
@@ -141,11 +142,12 @@ describe("JSONCasing", () =>
             actAndAssert(camelObj, pascalObj);
         });
 
-        it("should support a deep conversion", () =>
+        it("should support a deep conversion with a date", () =>
         {
             //Arrange
-            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2" } };
-            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2" } };
+            var date = new Date();
+            var camelObj = { prop1: "prop 1", obj1: { deepProp1: "dp1", deepProp2: "dp2", date } };
+            var pascalObj = { Prop1: "prop 1", Obj1: { DeepProp1: "dp1", DeepProp2: "dp2", Date: date } };
             actAndAssert(camelObj, pascalObj);
         });
 

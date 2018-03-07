@@ -37,7 +37,7 @@
     }
 
     _isPrimitive(obj) {
-        return typeof (obj) != "object";
+        return typeof (obj) != "object" || obj instanceof Date;
     }
 
     _processedObjectFrom({obj, casingChange}) {
