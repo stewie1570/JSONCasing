@@ -30,14 +30,19 @@ describe("JSONCasing", () =>
             var string = "a string (a primitive)";
             var number = 2;
             var nullObj = null;
+            var date = new Date();
 
             //Act
             //Assert
             expect(JSONCasing.toPascal(string)).toEqual(string);
             expect(JSONCasing.toPascal(number)).toEqual(number);
+            expect(JSONCasing.toPascal(nullObj)).toEqual(nullObj);
+            expect(JSONCasing.toPascal(date)).toEqual(date);
+
             expect(JSONCasing.toCamel(string)).toEqual(string);
             expect(JSONCasing.toCamel(number)).toEqual(number);
             expect(JSONCasing.toCamel(nullObj)).toEqual(nullObj);
+            expect(JSONCasing.toCamel(date)).toEqual(date);
         });
     });
 
