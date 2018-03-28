@@ -31,9 +31,6 @@
     "regenerator-runtime": "^0.11.1",
     "webpack": "^3.11.0"
   },
-  "dependencies": {
-    "babel-runtime": "^6.26.0"
-  },
   "files": [
     "build"
   ]
