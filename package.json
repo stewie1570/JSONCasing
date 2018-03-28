@@ -15,7 +15,9 @@
   "scripts": {
     "test": "jest --coverage",
     "tdd": "jest --watch",
-    "build": "npm run test && webpack"
+    "build": "npm run test && webpack",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "author": "Stewart Anderson",
   "license": "GPL-3.0",
@@ -31,5 +33,8 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0"
-  }
+  },
+  "files": [
+    "build"
+  ]
 }
