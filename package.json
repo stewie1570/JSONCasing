@@ -10,7 +10,7 @@
     "camel",
     "camelcase"
   ],
-  "main": "lib/index.js",
+  "main": "lib/json-casing.js",
   "description": "A simple library to convert JSON objects from one case (ie Camel) to another (ie Pascal).",
   "scripts": {
     "test": "jest --coverage --modulePathIgnorePatterns=lib/",
