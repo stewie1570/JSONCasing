@@ -1,19 +1,19 @@
 ﻿import { reCasedObjectFrom } from './domain'
 
-export var JSONCasing = {
-    toCamel: function toCamel(jsonObj){
+export let JSONCasing = {
+    toCamel: function toCamel(jsonObj: any){
         return reCasedObjectFrom({
             jsonObj,
             casingChange: this.toCamel.bind(this),
-            firstCharModifier: firstChar => firstChar.toLowerCase()
+            firstCharModifier: (firstChar: string) => firstChar.toLowerCase()
         });
     },
 
-    toPascal: function toPascal(jsonObj) {
+    toPascal: function toPascal(jsonObj: any) {
         return reCasedObjectFrom({
             jsonObj,
             casingChange: this.toPascal.bind(this),
-            firstCharModifier: firstChar => firstChar.toUpperCase()
+            firstCharModifier: (firstChar: string) => firstChar.toUpperCase()
         });
     }
 }

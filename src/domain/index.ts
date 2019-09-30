@@ -1,7 +1,7 @@
 import { isArray, isPrimitive } from '../core'
 
-export function reCasedObjectFrom({ jsonObj, casingChange, firstCharModifier }) {
-    var replacementObj = isArray(jsonObj) ? [] : {};
+export function reCasedObjectFrom({ jsonObj, casingChange, firstCharModifier }: any) {
+    let replacementObj: any = isArray(jsonObj) ? [] : {};
 
     if (jsonObj == null)
         return jsonObj;
@@ -16,10 +16,10 @@ export function reCasedObjectFrom({ jsonObj, casingChange, firstCharModifier }) 
     return replacementObj;
 }
 
-function processedObjectFrom({ obj, casingChange }) {
+function processedObjectFrom({ obj, casingChange }: any) {
     return typeof (obj) == "object" ? casingChange(obj) : obj;
 }
 
-function properKeyFrom({ key, firstCharModifier }) {
+function properKeyFrom({ key, firstCharModifier }: any) {
     return firstCharModifier(key.charAt(0)) + key.substr(1, key.length - 1);
 }

@@ -1,4 +1,4 @@
-﻿import { JSONCasing } from '../src/json-casing';
+﻿import { JSONCasing } from './json-casing';
 
 describe("JSONCasing", () =>
 {
