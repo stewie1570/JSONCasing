@@ -13,7 +13,7 @@
   "main": "lib/json-casing.js",
   "description": "A simple library to convert JSON objects from one case (ie Camel) to another (ie Pascal).",
   "scripts": {
-    "test": "jest --coverage --modulePathIgnorePatterns=lib/",
+    "test": "jest --coverage --colors --modulePathIgnorePatterns=lib/",
     "tdd": "jest --watch",
     "build": "yarn run test && del-cli ./lib && tsc",
     "prepublishOnly": "yarn run build"
