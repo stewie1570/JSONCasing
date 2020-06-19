@@ -1,7 +1,7 @@
 ﻿import { reCasedObjectFrom } from './domain'
 
 export let JSONCasing = {
-    toCamel: function toCamel(jsonObj: any){
+    toCamel: function toCamel(jsonObj: any): any {
         return reCasedObjectFrom({
             jsonObj,
             casingChange: this.toCamel.bind(this),
@@ -9,7 +9,7 @@ export let JSONCasing = {
         });
     },
 
-    toPascal: function toPascal(jsonObj: any) {
+    toPascal: function toPascal(jsonObj: any): any {
         return reCasedObjectFrom({
             jsonObj,
             casingChange: this.toPascal.bind(this),
