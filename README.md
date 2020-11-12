@@ -1,6 +1,6 @@
 # json-casing
 
-[![Build](https://travis-ci.org/stewie1570/JSONCasing.svg)](https://travis-ci.org/stewie1570/JSONCasing)
+[![Build](https://github.com/stewie1570/JSONCasing/workflows/Build/badge.svg)](https://github.com/stewie1570/JSONCasing/actions)
 [![Coverage Status](https://coveralls.io/repos/github/stewie1570/JSONCasing/badge.svg?branch=master)](https://coveralls.io/github/stewie1570/JSONCasing?branch=master)
 [![npm version](https://badge.fury.io/js/json-casing.svg)](https://badge.fury.io/js/json-casing)
 [![Package Size](https://badgen.net/bundlephobia/minzip/json-casing)](https://bundlephobia.com/result?p=json-casing)
